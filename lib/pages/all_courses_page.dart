@@ -12,24 +12,31 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  final List<Map<String, dynamic>> _allCourses = [
-    {'titulo': 'Formação Python Developer'},
-    {'titulo': 'Formação Java Developer'},
-    {'titulo': 'Formação React Web Developer'},
-    {'titulo': 'Formação Node.js'},
-    {'titulo': 'Formação IA com ChatGPT'},
-    {'titulo': 'Formação Flutter Developer'},
-    // Adicione mais se quiser
-  ];
+  final Map<String, List<String>> _sections = {
+    'Lançamentos Gratuitos': [
+      'Formação Python Developer',
+      'Formação Java Developer',
+      'Formação IA com ChatGPT',
+    ],
+    'Minha Lista': [
+      'Formação React Web Developer',
+      'Formação Flutter Developer',
+      'Formação Node.js',
+    ],
+    'Formações Avançadas': [
+      'Formação DevOps',
+      'Formação Segurança da Informação',
+      'Formação Backend com Spring',
+    ],
+    'Formações para Iniciantes': [
+      'Formação Lógica de Programação',
+      'Formação Front-End',
+      'Formação GitHub Explorer',
+    ],
+  };
 
   @override
   Widget build(BuildContext context) {
-    final filteredCourses = _allCourses
-        .where((curso) => curso['titulo']
-        .toLowerCase()
-        .contains(_searchQuery.toLowerCase()))
-        .toList();
-
     return BasePage(
       title: 'Todos os Cursos',
       actions: [
@@ -68,7 +75,10 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
                         _searchQuery = _searchController.text;
                       });
                     },
-                    child: const Text('Buscar', style: TextStyle(color: Colors.purpleAccent)),
+                    child: const Text(
+                      'Buscar',
+                      style: TextStyle(color: Colors.purpleAccent),
+                    ),
                   ),
                 ],
               ),
@@ -76,28 +86,65 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
           },
         ),
       ],
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: filteredCourses.length,
-        itemBuilder: (context, index) {
-          final curso = filteredCourses[index];
-          return Card(
-            color: Colors.grey[850],
-            margin: const EdgeInsets.only(bottom: 16),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                curso['titulo'],
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        children: _sections.entries.map((entry) {
+          final sectionTitle = entry.key;
+          final courses = entry.value
+              .where((curso) => curso.toLowerCase().contains(_searchQuery.toLowerCase()))
+              .toList();
+
+          if (courses.isEmpty) return const SizedBox(); // esconde se nada bater com a busca
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  sectionTitle,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
+              SizedBox(
+                height: 140,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: courses.length,
+                  itemBuilder: (context, index) {
+                    final curso = courses[index];
+                    return Container(
+                      width: 200,
+                      margin: const EdgeInsets.only(right: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[850],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.all(16),
+                      child: Center(
+                        child: Text(
+                          curso,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
           );
-        },
+        }).toList(),
       ),
     );
   }

@@ -40,7 +40,7 @@ class DashboardPage extends StatelessWidget {
 
     // ─── Agora usamos BasePage em vez de Scaffold ───
     return BasePage(
-      title: 'DIO Dashboard',
+      title: 'Home',
       body: CustomScrollView(
         slivers: [
           // PERFIL

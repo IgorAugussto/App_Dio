@@ -1,3 +1,8 @@
+import 'package:app_dio/pages/articles_page.dart';
+import 'package:app_dio/pages/english_courses_page.dart';
+import 'package:app_dio/pages/formations_page.dart';
+import 'package:app_dio/pages/global_career_page.dart';
+import 'package:app_dio/pages/jobs_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 import '../pages/dashboard_page.dart';
@@ -29,19 +34,44 @@ class BasePage extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 24)),
             ),
             ListTile(
-              title: const Text('Meus Cursos'),
-              onTap: () => Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => const HomePage())),
-            ),
-            ListTile(
               title: const Text('Home'),
               onTap: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (_) => const DashboardPage())),
             ),
             ListTile(
+              title: const Text('Meus Cursos'),
+              onTap: () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => const HomePage())),
+            ),
+            ListTile(
               title: const Text('Cursos'),
               onTap: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (_) => const AllCoursesPage())),
+            ),
+            ListTile(
+              title: const Text('Formação'),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const FormationsPage())),
+            ),
+            ListTile(
+              title: const Text('Carreira Global'),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const GlobalCareerPage())),
+            ),
+            ListTile(
+              title: const Text('Curso de Inglês'),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const EnglishCoursesPage())),
+            ),
+            ListTile(
+              title: const Text('Vagas'),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const JobsPage())),
+            ),
+            ListTile(
+              title: const Text('Artigos'),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const ArticlesPage())),
             ),
           ],
         ),
