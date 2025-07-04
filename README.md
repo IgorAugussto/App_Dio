@@ -18,30 +18,7 @@ Este é um aplicativo **não oficial** inspirado na plataforma da [DIO.me](https
 - 📰 **Artigos** com prévias dos conteúdos
 - 👤 **Perfil do Usuário** com XP, projetos e estatísticas
 - ☰ **Menu lateral acessível em todas as telas** para navegação rápida
-
----
-
-## 🧱 Estrutura de Pastas
-
-lib/
-├── main.dart
-├── pages/
-│ ├── dashboard_page.dart
-│ ├── login_page.dart
-│ ├── all_courses_page.dart
-│ ├── formations_page.dart
-│ ├── global_career_page.dart
-│ ├── english_courses_page.dart
-│ ├── jobs_page.dart
-│ ├── job_detail_page.dart
-│ ├── articles_page.dart
-│ └── profile_page.dart
-├── widgets/
-│ ├── base_page.dart
-│ ├── profile_card.dart
-│ └── stat_box.dart
-
-
+- 
 ---
 
 🛠 Tecnologias utilizadas
